@@ -3,23 +3,31 @@ import { BaseLinkedList } from "./Base/BaseLinkedList";
 class SortAbleLinkedList extends BaseLinkedList {
 
     public bubbleSort() {
-        for (let i = 0; i < this._lenght; i++) {
-            let currentNode = this._first;
-            let isSwapped = false;
-            let nodeIndex = 0;
-            while (currentNode?.getNext()) {
-                if (currentNode!.getValue() > currentNode!.getNext()!.getValue()) {
-                    this.exchange(nodeIndex, nodeIndex + 1);
-                    isSwapped = true;
-                }
-                currentNode = currentNode?.getNext();
-                nodeIndex++;
-            }
-            if (isSwapped === false) {
-                break;
+        for (let i =0; i < this._lenght; i++) {
+            for (let j = 0; j < this._lenght - i - 1; j++) {
+              let node1 = this.find(j);
+              if (node1!.getValue() > node1!.getNext()!.getValue()) {
+                this.swapNode(node1, node1?.getNext());
+              }
             }
         }
+           
     }
+        // for (let i = 0; i < this._lenght; i++) {
+        //     let currentNode = this._first;
+        //     let nextCurrentNode = currentNode?.getNext();
+        //     let isSwapped = false;
+        //     for (let i = 0; i < this._lenght; i++) {
+        //         if (currentNode!.getValue() > nextCurrentNode!.getValue()) {
+        //             this.swapNode(currentNode, nextCurrentNode);
+        //             isSwapped = true;
+        //         }
+        //         currentNode = currentNode?.getNext();
+        //     }
+        //     if (isSwapped === false) {
+        //         break;
+        //     }
+        // }
 
     public selectionSort() {
         let currentNode, minimum, nextMinimum;
@@ -73,16 +81,16 @@ try {
     linkedList.add(-20);
     linkedList.add(43);
     // linkedList.ShowAll();
-    // linkedList.ShowAll();
-    // console.log("Setelah bubble sort");
-    // linkedList.bubbleSort();
-    // linkedList.ShowAll();
+    linkedList.ShowAll();
+    console.log("Setelah bubble sort");
+    linkedList.bubbleSort();
+    linkedList.ShowAll();
     // console.log("Setelah selection sort");
     // linkedList.selectionSort();
     // linkedList.ShowAll();
-    console.log("Setelah insertion sort");
-    linkedList.insertionSort();
-    linkedList.ShowAll();
+    // console.log("Setelah insertion sort");
+    // linkedList.insertionSort();
+    // linkedList.ShowAll();
 } catch (e) {
     console.log(`Error Occured, \n${e}`);
 }
