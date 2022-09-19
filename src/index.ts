@@ -50,10 +50,16 @@ class SortAbleLinkedList extends BaseLinkedList {
 }
 
 
+function performanceTest(sortingFunction: () => void) {
+    let startTime = performance.now()
+    sortingFunction();
+    console.log(`Waktu yang dibutuhkan: ${performance.now() - startTime} ms`);
+}
+
 try {
     let linkedList = new SortAbleLinkedList();
-    console.log("----Init LinkedList----");
-    console.log("sebelum bubble sort");
+    // console.log("----Init LinkedList----");
+    // console.log("sebelum bubble sort");
     linkedList.add(-5);
     linkedList.add(5);
     linkedList.add(2);
@@ -61,21 +67,20 @@ try {
     linkedList.add(-9);
     linkedList.add(-1);
     linkedList.add(8);
-    linkedList.ShowAll();
+    linkedList.add(11);
+    linkedList.add(-20);
+    linkedList.add(43);
+    // linkedList.ShowAll();
+    // linkedList.ShowAll();
     // console.log("Setelah bubble sort");
     // linkedList.bubbleSort();
     // linkedList.ShowAll();
     // console.log("Setelah selection sort");
     // linkedList.selectionSort();
     // linkedList.ShowAll();
-    console.log("Setelah insertion sort");
-    linkedList.selectionSort();
-    linkedList.ShowAll();
-    // let a: number;
-    // let b: number;
-    // a = -1;
-    // b = -3;
-    // console.log(b < a);
+    // console.log("Setelah insertion sort");
+    // linkedList.selectionSort();
+    // linkedList.ShowAll();
 } catch (e) {
     console.log(`Error Occured, \n${e}`);
 }
