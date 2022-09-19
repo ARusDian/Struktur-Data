@@ -19,26 +19,13 @@ class SortAbleLinkedList extends BaseLinkedList {
                 break;
             }
         }
-        // this.exchange(j, j + 1);
-        //         swapped = true;
-        // let currentNode = this._first;
-        // let swapped = true;
-        // while (swapped === true) {
-        //   if (swapped === true) {
-        //     for (let i = 0; i < this._lenght; i++) {
-
-        //     }
-        //   } else {
-        //     swapped = false;
-        //   }
-        // }
     }
 
     public selectionSort() {
         for (let i = 0; i < this._lenght; i++) {
             let currentMinNode = this.find(i);
             let currentMinIndex = i;
-            let j = i+1;
+            let j = i + 1;
             while (currentMinNode?.getNext()) {
                 if (currentMinNode!.getValue() > currentMinNode.getNext()!.getValue()) {
                     currentMinIndex = j;
@@ -46,43 +33,20 @@ class SortAbleLinkedList extends BaseLinkedList {
                 currentMinNode = currentMinNode?.getNext();
                 j++;
             }
-            this.exchange(currentMinIndex,i)
+            this.exchange(currentMinIndex, i)
         }
-        // let currentNode = this._first;
-        // let nodeIndex = 0;
-        // while (currentNode?.getNext()) {
-        //     let minNode = currentNode;
-        //     let minNodeIndex = nodeIndex;
-        //     let nextNode = currentNode?.getNext();
-        //     let nextNodeIndex = nodeIndex + 1;
-        //     while (nextNode) {
-        //         if (minNode!.getValue() > nextNode!.getValue()) {
-        //             minNode = nextNode;
-        //             minNodeIndex = nextNodeIndex;
-        //         }
-        //         nextNode = nextNode?.getNext();
-        //         nextNodeIndex++;
-        //     }
-        //     this.exchange(nodeIndex, minNodeIndex);
-        //     currentNode = currentNode?.getNext();
-        //     nodeIndex++;
-        // }
     }
-    // for (let i = 0; i < this._lenght; i++) {
-    //     let currentMinNode = this.find(i);
-    //     let nextMinimumNode = currentMinNode?.getNext();
-    //     let currentIndex = i;
-    //     while (nextMinimumNode) {
-    //         if (currentMinNode!.getValue() > currentMinNode!.getNext()!.getValue()) {
-    //             currentMinNode = nextMinimumNode;
-    //             currentIndex += 1;
-    //         }
-    //         nextMinimumNode = nextMinimumNode?.getNext()
-    //     }
-    //     if (currentMinNode?.getValue()! < this.find(i)?.getValue()!) {
-    //         this.exchange(currentIndex, i);
-    //     }
-    // }
+
+    public insertionSort() {
+        for (let i = 1; i < this._lenght; i++) {
+            let currentNode = this.find(i);
+            let j = i - 1;
+            while (j >= 0 && currentNode!.getValue() < this.find(j)!.getValue()) {
+                this.exchange(j, j + 1);
+                j--;
+            }
+        }
+    }
 }
 
 
@@ -90,6 +54,7 @@ try {
     let linkedList = new SortAbleLinkedList();
     console.log("----Init LinkedList----");
     console.log("sebelum bubble sort");
+    linkedList.add(-5);
     linkedList.add(5);
     linkedList.add(2);
     linkedList.add(7);
@@ -100,9 +65,11 @@ try {
     // console.log("Setelah bubble sort");
     // linkedList.bubbleSort();
     // linkedList.ShowAll();
-    console.log("Setelah selection sort");
+    // console.log("Setelah selection sort");
+    // linkedList.selectionSort();
+    // linkedList.ShowAll();
+    console.log("Setelah insertion sort");
     linkedList.selectionSort();
-    console.log("Selesai");
     linkedList.ShowAll();
     // let a: number;
     // let b: number;
