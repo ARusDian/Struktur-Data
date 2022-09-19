@@ -38,10 +38,9 @@ class SortAbleLinkedList extends BaseLinkedList {
         for (let i = 0; i < this._lenght; i++) {
             let currentMinNode = this.find(i);
             let currentMinIndex = i;
-            let j = 0;
+            let j = i+1;
             while (currentMinNode?.getNext()) {
                 if (currentMinNode!.getValue() > currentMinNode.getNext()!.getValue()) {
-                    currentMinNode = currentMinNode.getNext();
                     currentMinIndex = j;
                 }
                 currentMinNode = currentMinNode?.getNext();
