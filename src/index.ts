@@ -1,11 +1,11 @@
 import { BaseLinkedList } from "./Base/BaseLinkedList";
 
 class SortAbleLinkedList extends BaseLinkedList {
+
     public bubbleSort() {
-        let isSwapped = false;
         for (let i = 0; i < this._lenght; i++) {
             let currentNode = this._first;
-            isSwapped = false;
+            let isSwapped = false;
             let nodeIndex = 0;
             while (currentNode?.getNext()) {
                 if (currentNode!.getValue() > currentNode!.getNext()!.getValue()) {
@@ -22,18 +22,19 @@ class SortAbleLinkedList extends BaseLinkedList {
     }
 
     public selectionSort() {
-        for (let i = 0; i < this._lenght; i++) {
-            let currentMinNode = this.find(i);
-            let currentMinIndex = i;
-            let j = i + 1;
-            while (currentMinNode?.getNext()) {
-                if (currentMinNode!.getValue() > currentMinNode.getNext()!.getValue()) {
-                    currentMinIndex = j;
+        let currentNode, minimum, nextMinimum;
+        for (let i = 0; i < this._lenght; i++) { 
+            //save latest sorted minimum
+            currentNode = this.find(i);
+            minimum = currentNode;
+            nextMinimum = currentNode?.getNext();
+            while(nextMinimum?.getNext()){
+                if (nextMinimum!.getValue() < minimum!.getValue()) {
+                    minimum = nextMinimum;
                 }
-                currentMinNode = currentMinNode?.getNext();
-                j++;
+                nextMinimum = nextMinimum?.getNext();
             }
-            this.exchange(currentMinIndex, i)
+            this.swapNode(currentNode, minimum);
         }
     }
 
@@ -60,10 +61,10 @@ try {
     let linkedList = new SortAbleLinkedList();
     // console.log("----Init LinkedList----");
     // console.log("sebelum bubble sort");
-    linkedList.add(-5);
     linkedList.add(5);
     linkedList.add(2);
     linkedList.add(7);
+    linkedList.add(-5);
     linkedList.add(-9);
     linkedList.add(-1);
     linkedList.add(8);
@@ -76,11 +77,11 @@ try {
     // linkedList.bubbleSort();
     // linkedList.ShowAll();
     // console.log("Setelah selection sort");
-    // linkedList.selectionSort();
+    linkedList.selectionSort();
     // linkedList.ShowAll();
     // console.log("Setelah insertion sort");
-    // linkedList.selectionSort();
-    // linkedList.ShowAll();
+    // linkedList.insertionSort();
+    linkedList.ShowAll();
 } catch (e) {
     console.log(`Error Occured, \n${e}`);
 }
