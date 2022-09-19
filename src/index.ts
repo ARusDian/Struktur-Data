@@ -49,12 +49,12 @@ class SortAbleLinkedList extends BaseLinkedList {
     public insertionSort() {
         for (let i = 1; i < this._lenght; i++) {
             let poppedNode = this.find(i);
+            this.remove(i);
             let insertIndex = i - 1;
             while (insertIndex >= 0 && poppedNode!.getValue() < poppedNode!.getPrev()!.getValue()) {
                 insertIndex--;
             }
             this.insert(poppedNode!.getValue(), insertIndex + 1);
-            this.remove(i + 1);
         }
     }
 }
@@ -76,9 +76,9 @@ try {
     linkedList.add(-5);
     linkedList.add(-9);
     linkedList.add(-1);
+    linkedList.add(-20);
     linkedList.add(8);
     linkedList.add(11);
-    linkedList.add(-20);
     linkedList.add(43);
     // linkedList.ShowAll();
     linkedList.ShowAll();

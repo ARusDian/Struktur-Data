@@ -54,6 +54,18 @@ export class BaseLinkedList {
         return newNode;
     }
 
+    public addNode(value: Node): Node{
+        if (this._lenght === 0) {
+            this._first = this._last = value;
+        } else {
+            value.setPrev(this._last);
+            this._last?.setNext(value);
+            this._last = value;
+        }
+        this._lenght++;
+        return value;
+    }
+
     public insert(value: number, index: number) {
         if (index > this._lenght || index < -Math.abs(this._lenght + 1)) {
             throw new Error("Input index is bigger than the current length");
@@ -81,6 +93,37 @@ export class BaseLinkedList {
         return newNode;
     }
 
+    public insertNode(value: Node | undefined, index: number) {
+        if (value === undefined) { 
+            throw new Error("Node is undefined");
+        }
+        if (index > this._lenght || index < -Math.abs(this._lenght + 1)) {
+            throw new Error("Input index is bigger than the current length");
+        }
+        if (index === this._lenght || index === -1) {
+            return this.addNode(value);
+        }
+        if (index === 0) {
+            value.setNext(this._first);
+            this._first?.setPrev(value);
+            this._first = value;
+        }
+        else if (index === -Math.abs(this._lenght)) {
+            this.addNode(value);
+
+        }else {
+            let currentNode: Node | undefined;
+            currentNode = this.find(index);
+            const prevNode = currentNode?.getPrev();
+            value.setPrev(prevNode);
+            value.setNext(currentNode);
+            prevNode?.setNext(value);
+            currentNode?.setPrev(value);
+        }
+        this._lenght++;
+        return value;
+    }
+
     public remove(index: number) {
         if (index > this._lenght || index < -Math.abs(this._lenght)) {
             throw new Error("Input index is bigger than the current length");
@@ -97,6 +140,40 @@ export class BaseLinkedList {
             nextNode?.setPrev(newPrevNode);
         }
         this._lenght--;
+    }
+
+    public pop(index?: number): Node | undefined {
+        if (this._first !== undefined) {
+            if (index === undefined) {
+                let lastNode = this._last;
+                this._last = this._last?.getPrev();
+                this._last?.setNext(undefined);
+                this._lenght--;
+                return lastNode;
+            } else {
+                if (index > this._lenght || index < -Math.abs(this._lenght)) {
+                    throw new Error("Input index is bigger than the current length");
+                }
+                if (index === 0 || index === -Math.abs(this._lenght)) {
+                    let firstNode = this._first;
+                    this._first = this._first?.getNext();
+                    this._first?.setPrev(undefined);
+                    this._lenght--;
+                    return firstNode;
+                } else {
+                    let pointerNode: Node | undefined;
+                    pointerNode = this.find(index);
+                    pointerNode?.getPrev()?.setNext(pointerNode.getNext());
+                    let newPrevNode = pointerNode?.getPrev();
+                    let nextNode = pointerNode?.getNext();
+                    nextNode?.setPrev(newPrevNode);
+                    this._lenght--;
+                    return pointerNode;
+                }
+            }
+        } else {
+            throw new Error("There's nothing to pop!");
+        }
     }
 
     public exchange(index1: number, index2: number) {
