@@ -1,8 +1,8 @@
-import { NodeData } from "./Node";
+import { Node } from "./Node";
 
 export class BaseLinkedList {
-    public _first?: NodeData;
-    public _last?: NodeData;
+    public _first?: Node;
+    public _last?: Node;
     public _lenght = 0;
 
     public ShowAll() {
@@ -19,8 +19,8 @@ export class BaseLinkedList {
         }
     }
 
-    public find(index: number): NodeData | undefined {
-        let currentNode: NodeData | undefined;
+    public find(index: number): Node | undefined {
+        let currentNode: Node | undefined;
         if (index === 0 || index === -Math.abs(this._lenght)) {
             return this._first;
         }
@@ -41,8 +41,8 @@ export class BaseLinkedList {
         return currentNode;
     }
 
-    public add(value: number): NodeData {
-        const newNode = new NodeData(value);
+    public add(value: number): Node {
+        const newNode = new Node(value);
         if (this._lenght === 0) {
             this._first = this._last = newNode;
         } else {
@@ -61,7 +61,7 @@ export class BaseLinkedList {
         if (index === this._lenght || index === -1) {
             return this.add(value);
         }
-        let newNode = new NodeData(value);
+        let newNode = new Node(value);
         if (index === 0) {
             newNode.setNext(this._first);
             this._first?.setPrev(newNode);
@@ -69,7 +69,7 @@ export class BaseLinkedList {
         } else if (index === -Math.abs(this._lenght)) {
             this.add(value);
         } else {
-            let currentNode: NodeData | undefined;
+            let currentNode: Node | undefined;
             currentNode = this.find(index);
             const prevNode = currentNode?.getPrev();
             newNode.setPrev(prevNode);
@@ -89,7 +89,7 @@ export class BaseLinkedList {
             this._first = this._first?.getNext();
             this._first?.setPrev(undefined);
         } else {
-            let pointerNode: NodeData | undefined;
+            let pointerNode: Node | undefined;
             pointerNode = this.find(index);
             pointerNode?.getPrev()?.setNext(pointerNode.getNext());
             let newPrevNode = pointerNode?.getPrev();
@@ -108,9 +108,9 @@ export class BaseLinkedList {
             throw new Error("Input index can't be negative");
         }
 
-        let pointerNode1: NodeData | undefined;
+        let pointerNode1: Node | undefined;
         pointerNode1 = this.find(index1);
-        let pointerNode2: NodeData | undefined;
+        let pointerNode2: Node | undefined;
         pointerNode2 = this.find(index2);
 
         if (pointerNode1 === this._first) {
