@@ -146,4 +146,42 @@ export class BaseLinkedList {
             pointerNode2.getPrev()?.setNext(pointerNode2);
         }
     }
+
+    public swapNode(node1: Node | undefined, node2: Node | undefined) {
+        if (!node1 && node2) {
+            throw new Error("node is undefined");
+        }
+        if (node1 === this._first) {
+            this._first = node2;
+        } else if (node2 === this._first) {
+            this._first = node1;
+        }
+        if (node1 === this._last) {
+            this._last = node2;
+        } else if (node2 === this._last) {
+            this._last = node1;
+        }
+
+        let tempNode = node1?.getNext();
+        node1?.setNext(node2?.getNext());
+        node2?.setNext(tempNode);
+
+        if (node1?.getNext()) {
+            node1.getNext()?.setPrev(node1);
+        }
+        if (node2?.getNext()) {
+            node2.getNext()?.setPrev(node2);
+        }
+
+        tempNode = node1?.getPrev();
+        node1?.setPrev(node2?.getPrev());
+        node2?.setPrev(tempNode);
+
+        if (node1?.getPrev()) {
+            node1.getPrev()?.setNext(node1);
+        }
+        if (node2?.getNext()) {
+            node2.getPrev()?.setNext(node2);
+        }
+    }
 }
