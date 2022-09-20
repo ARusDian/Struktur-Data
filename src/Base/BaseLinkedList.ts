@@ -110,7 +110,6 @@ export class BaseLinkedList {
         }
         else if (index === -Math.abs(this._lenght)) {
             this.addNode(value);
-
         }else {
             let currentNode: Node | undefined;
             currentNode = this.find(index);
