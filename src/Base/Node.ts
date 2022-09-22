@@ -1,5 +1,5 @@
 export class Node {
-    private _value: number;
+    private _value: any;
     private _next?: Node;
     private _prev?: Node;
     constructor(value: number) {
