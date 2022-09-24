@@ -41,6 +41,5 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
             }
             this.insertNode(currentNode, insertIndex + 1);
         }
-
     }
 }

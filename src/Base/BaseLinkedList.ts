@@ -19,6 +19,22 @@ export class BaseLinkedList {
         }
     }
 
+    public printAsArray() {
+        let currentNode = this._first;
+        let array: number[] = [];
+        for (let i = 0; i < this._lenght; i++) {
+            array.push(currentNode?.getValue() as number);
+            currentNode = currentNode?.getNext();
+        }
+        console.log(array.toString());
+    }
+
+    public generateRandomList(size: number) { 
+        for (let i = 0; i < size; i++) {
+            this.add(Math.floor(Math.random() * 100));
+        }
+    }
+
     public find(index: number): Node | undefined {
         let currentNode: Node | undefined;
         if (index === 0 || index === -Math.abs(this._lenght)) {

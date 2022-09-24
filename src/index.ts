@@ -9,7 +9,7 @@ function performanceTest(sortingFunction: () => void) {
 }
 
 try {
-    let linkedList = new SoalLinkedList();
+    let linkedList = new SimpleSortAbleLinkedList();
     console.log("----Init LinkedList----");
     linkedList.add(-20);
     linkedList.add(5);
@@ -20,10 +20,14 @@ try {
     linkedList.add(43);
     linkedList.add(-9);
     linkedList.add(-1);
-    linkedList.add(11);
-    linkedList.add(0);
-    linkedList.add(8);
-    linkedList.ShowAll();
+    // linkedList.add(11);
+    // linkedList.add(0);
+    // linkedList.add(8);
+    // linkedList.ShowAll();
+    // linkedList.generateRandomList(8);
+    linkedList.printAsArray();
+    linkedList.selectionSort();
+    linkedList.printAsArray();
 
 
 } catch (e) {
