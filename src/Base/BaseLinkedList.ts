@@ -5,7 +5,7 @@ export class BaseLinkedList {
     public _last?: Node;
     public _lenght = 0;
 
-    public ShowAll() {
+    public showAll() {
         let currentNode = this._first;
         for (let i = 0; i < this._lenght; i++) {
             console.log(
