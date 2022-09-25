@@ -1,5 +1,7 @@
 # Struktur-Data
 
+Data Structure using typescript language
+
 After Git-clone repo then type "npm install" to install node modules
 
 to run type "npm run start"
