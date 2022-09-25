@@ -1,4 +1,4 @@
-import { BaseLinkedList } from "./BaseLinkedList";
+import { BaseLinkedList } from "../Base/BaseLinkedList";
 
 export class SimpleSortAbleLinkedList extends BaseLinkedList {
 
