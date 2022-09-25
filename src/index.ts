@@ -12,7 +12,7 @@ try {
     let linkedList = new SimpleSortAbleLinkedList();
     console.log("----Init LinkedList----");
     linkedList.add(-20);
-    linkedList.add(5);
+    linkedList.add(1);
     linkedList.add(5);
     linkedList.add(2);
     linkedList.add(7);
@@ -20,9 +20,9 @@ try {
     linkedList.add(43);
     linkedList.add(-9);
     linkedList.add(-1);
-    // linkedList.add(11);
-    // linkedList.add(0);
-    // linkedList.add(8);
+    linkedList.add(11);
+    linkedList.add(0);
+    linkedList.add(8);
     // linkedList.ShowAll();
     // linkedList.generateRandomList(8);
     linkedList.printAsArray();

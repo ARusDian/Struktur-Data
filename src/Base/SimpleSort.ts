@@ -16,15 +16,14 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
     public selectionSort() {
         let currentNode, minimum, nextMinimum;
         for (let i = 0; i < this._lenght; i++) {
-            //save latest sorted minimum
             currentNode = this.find(i);
             minimum = currentNode;
-            nextMinimum = currentNode?.getNext();
-            while (nextMinimum?.getNext()) {
-                if (nextMinimum!.getValue() < minimum!.getValue()) {
+            nextMinimum = minimum!.getNext();
+            while (nextMinimum) {
+                if (minimum!.getValue() > nextMinimum.getValue()) {
                     minimum = nextMinimum;
                 }
-                nextMinimum = nextMinimum?.getNext();
+                nextMinimum = nextMinimum.getNext();
             }
             this.swapNode(currentNode, minimum);
         }
