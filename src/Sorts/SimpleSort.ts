@@ -30,6 +30,7 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
                 nextMinimum = nextMinimum.getNext();
             }
             this.swapNode(currentNode, minimum);
+            this.printAsArray();
         }
     }
 
@@ -43,6 +44,7 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
                 prevNode = prevNode?.getPrev();
             }
             this.insertNode(currentNode, insertIndex + 1);
+            this.printAsArray();
         }
     }
 }
