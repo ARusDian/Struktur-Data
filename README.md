@@ -22,6 +22,7 @@ to run type "npm run start"
 | 10  | pop | take node in linked list with given index |
 | 11  | exchange | exchange node in linked list with given index |
 | 12  | swapNode | exchange node in linked list with given Node |
+| 13  | clearNodes | reset entire linkedlist value|
 |**B**|**SoalLinkedList**|**code challenge from lecturer assistant** |
 |  1  | MoveTailToHead | swap first node to last node |
 |  2  | removeDuplicates | remove duplicate node values |

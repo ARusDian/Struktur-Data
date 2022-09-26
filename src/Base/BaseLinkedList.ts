@@ -5,6 +5,12 @@ export class BaseLinkedList {
     public _last?: Node;
     public _lenght = 0;
 
+    public clearNodes() {
+        this._first = undefined;
+        this._last = undefined;
+        this._lenght = 0;
+    }
+
     public showAll() {
         let currentNode = this._first;
         for (let i = 0; i < this._lenght; i++) {
