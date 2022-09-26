@@ -3,13 +3,17 @@ import { BaseLinkedList } from "../Base/BaseLinkedList";
 export class SimpleSortAbleLinkedList extends BaseLinkedList {
 
     public bubbleSort() {
+        console.log("---Bubble Sort---");
         for (let i = 0; i < this._lenght; i++) {
             for (let j = 0; j < this._lenght - i - 1; j++) {
                 let node1 = this.find(j);
-                if (node1!.getValue() > node1!.getNext()!.getValue()) {
-                    this.swapNode(node1, node1?.getNext());
+                let node2 = node1?.getNext();
+                if (node1!.getValue() > node2!.getValue()) {
+                    this.swapNode(node1, node2);
                 }
+            
             }
+            this.printAsArray();
         }
     }
 
