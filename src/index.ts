@@ -1,5 +1,5 @@
 // Run: tsc index.ts && node index.js
-import { SimpleSortAbleLinkedList } from "./Base/SimpleSort";
+import { SimpleSortAbleLinkedList } from "./Sorts/SimpleSort";
 import { SoalLinkedList } from "./Praktikum/SoalLinkedList";
 
 function performanceTest(sortingFunction: () => void) {
@@ -26,7 +26,7 @@ try {
     // linkedList.ShowAll();
     // linkedList.generateRandomList(8);
     linkedList.printAsArray();
-    linkedList.selectionSort();
+    linkedList.bubbleSort();
     linkedList.printAsArray();
 
 
