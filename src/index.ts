@@ -25,7 +25,7 @@ try {
     linkedList.add(0);
     linkedList.add(8);
     linkedList.printAsArray();
-    console.log("----Setelah shell sorting----");
+    console.log("\n----Setelah shell sorting----");
     linkedList.shellSort();
     // linkedList.printAsArray();
 
