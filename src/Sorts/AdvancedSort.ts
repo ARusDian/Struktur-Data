@@ -1,8 +1,8 @@
 import { BaseLinkedList } from "../Base/BaseLinkedList";
-import {SimpleSortAbleLinkedList} from "../Sorts/SimpleSort";
-export class complex_sortableLinkedList extends BaseLinkedList {
-    public shellSort() {
-        let gap = Math.floor(this._lenght/2);
+import { SimpleSortAbleLinkedList } from "../Sorts/SimpleSort";
+export class AdvancedSortableLinkedList extends BaseLinkedList {
+    public shellSort(showProcess: boolean = false) {
+        let gap = Math.floor(this._lenght / 2);
 
         //ATTEMPT 1
 
@@ -16,14 +16,14 @@ export class complex_sortableLinkedList extends BaseLinkedList {
                 //     this.swapNode(this.find(i - gap), temp);
                 // }
                 for (let j = i; j >= gap && this.find(j - gap)!.getValue() > temp!.getValue(); j -= gap) {
-                    this.swapNode(this.find(j-gap),temp);
+                    this.swapNode(this.find(j - gap), temp);
                 }
-                
+
                 console.log(`\nGap = ${gap}, subSet that's being checked = ${subSet}`);
                 this.printAsArray();
-                
+
             }
-            gap = Math.floor(gap/2);
+            gap = Math.floor(gap / 2);
         }
         console.log("\nFinal Sorted List");
         this.printAsArray();
