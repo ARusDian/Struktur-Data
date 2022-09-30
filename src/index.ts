@@ -27,7 +27,7 @@ try {
     linkedList.printAsArray();
     console.log("\n----Setelah shell sorting----");
     linkedList.shellSort();
-    // linkedList.printAsArray();
+    linkedList.printAsArray();
 
 
 } catch (e) {

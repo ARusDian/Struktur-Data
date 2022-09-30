@@ -2,7 +2,7 @@ import { BaseLinkedList } from "../Base/BaseLinkedList";
 
 export class SimpleSortAbleLinkedList extends BaseLinkedList {
 
-    public bubbleSort() {
+    public bubbleSort(showProcess : boolean = false) {
         console.log("---Bubble Sort---");
         for (let i = 0; i < this._lenght; i++) {
             for (let j = 0; j < this._lenght - i - 1; j++) {
@@ -11,13 +11,13 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
                 if (node1!.getValue() > node2!.getValue()) {
                     this.swapNode(node1, node2);
                 }
-            
             }
-            this.printAsArray();
+            showProcess ? this.printAsArray() : null;
         }
     }
 
-    public selectionSort() {
+    public selectionSort(showProcess: boolean = false) {
+        console.log("---Selection Sort---");
         let currentNode, minimum, nextMinimum;
         for (let i = 0; i < this._lenght; i++) {
             currentNode = this.find(i);
@@ -30,11 +30,12 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
                 nextMinimum = nextMinimum.getNext();
             }
             this.swapNode(currentNode, minimum);
-            this.printAsArray();
+            showProcess ? this.printAsArray() : null;
         }
     }
 
-    public insertionSort() {
+    public insertionSort(showProcess: boolean = false) {
+        console.log("---Insertion Sort---");
         for (let i = 1; i < this._lenght; i++) {
             let currentNode = this.pop(i);
             let prevNode = currentNode?.getPrev();
@@ -44,7 +45,7 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
                 prevNode = prevNode?.getPrev();
             }
             this.insertNode(currentNode, insertIndex + 1);
-            this.printAsArray();
+            showProcess ? this.printAsArray() : null;
         }
     }
 }
