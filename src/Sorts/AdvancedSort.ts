@@ -20,7 +20,7 @@ export class AdvancedSortableLinkedList extends SimpleSortAbleLinkedList {
         for (let gap = Math.floor(this._lenght / 2); gap > 0; gap = Math.floor(gap / 2)) {
             if (gap == 1) {
                 showProcess ? this.printAsArray() : null;
-                showProcess ? console.log(`\nGap = ${gap} is 1, doing insertion sort`) : null;
+                showProcess ? console.log(`\nGap = ${gap}, doing insertion sort`) : null;
                 this.insertionSort();
                 break
             }
