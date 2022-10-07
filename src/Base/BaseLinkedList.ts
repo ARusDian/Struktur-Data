@@ -1,19 +1,19 @@
 import { Node } from "./Node";
 
 export class BaseLinkedList {
-    public _first?: Node;
-    public _last?: Node;
-    public _lenght = 0;
+    private _first?: Node;
+    private _last?: Node;
+    public _length = 0;
 
     public clearNodes() {
         this._first = undefined;
         this._last = undefined;
-        this._lenght = 0;
+        this._length = 0;
     }
 
     public showAll() {
         let currentNode = this._first;
-        for (let i = 0; i < this._lenght; i++) {
+        for (let i = 0; i < this._length; i++) {
             console.log(
                 `
         Node Index: ${i}
@@ -28,7 +28,7 @@ export class BaseLinkedList {
     public printAsArray() {
         let currentNode = this._first;
         let array: number[] = [];
-        for (let i = 0; i < this._lenght; i++) {
+        for (let i = 0; i < this._length; i++) {
             array.push(currentNode?.getValue() as number);
             currentNode = currentNode?.getNext();
         }
@@ -43,7 +43,7 @@ export class BaseLinkedList {
 
     public find(index: number): Node | undefined {
         let currentNode: Node | undefined;
-        if (index === 0 || index === -Math.abs(this._lenght)) {
+        if (index === 0 || index === -Math.abs(this._length)) {
             return this._first;
         }
         if (index > 0) {
@@ -63,36 +63,34 @@ export class BaseLinkedList {
         return currentNode;
     }
 
-    public add(value: number): Node {
+    public add(value: number){
         const newNode = new Node(value);
-        if (this._lenght === 0) {
+        if (this._length === 0) {
             this._first = this._last = newNode;
         } else {
             newNode.setPrev(this._last);
             this._last?.setNext(newNode);
             this._last = newNode;
         }
-        this._lenght++;
-        return newNode;
+        this._length++;
     }
 
-    public addNode(value: Node): Node{
-        if (this._lenght === 0) {
+    public addNode(value: Node){
+        if (this._length === 0) {
             this._first = this._last = value;
         } else {
             value.setPrev(this._last);
             this._last?.setNext(value);
             this._last = value;
         }
-        this._lenght++;
-        return value;
+        this._length++;
     }
 
     public insert(value: number, index: number) {
-        if (index > this._lenght || index < -Math.abs(this._lenght + 1)) {
+        if (index > this._length || index < -Math.abs(this._length + 1)) {
             throw new Error("Input index is bigger than the current length");
         }
-        if (index === this._lenght || index === -1) {
+        if (index === this._length || index === -1) {
             return this.add(value);
         }
         let newNode = new Node(value);
@@ -100,7 +98,7 @@ export class BaseLinkedList {
             newNode.setNext(this._first);
             this._first?.setPrev(newNode);
             this._first = newNode;
-        } else if (index === -Math.abs(this._lenght)) {
+        } else if (index === -Math.abs(this._length)) {
             this.add(value);
         } else {
             let currentNode: Node | undefined;
@@ -111,18 +109,17 @@ export class BaseLinkedList {
             prevNode?.setNext(newNode);
             currentNode?.setPrev(newNode);
         }
-        this._lenght++;
-        return newNode;
+        this._length++;
     }
 
     public insertNode(value: Node | undefined, index: number) {
         if (value === undefined) { 
             throw new Error("Node is undefined");
         }
-        if (index > this._lenght || index < -Math.abs(this._lenght + 1)) {
+        if (index > this._length || index < -Math.abs(this._length + 1)) {
             throw new Error("Input index is bigger than the current length");
         }
-        if (index === this._lenght || index === -1) {
+        if (index === this._length || index === -1) {
             return this.addNode(value);
         }
         if (index === 0) {
@@ -130,7 +127,7 @@ export class BaseLinkedList {
             this._first?.setPrev(value);
             this._first = value;
         }
-        else if (index === -Math.abs(this._lenght)) {
+        else if (index === -Math.abs(this._length)) {
             this.addNode(value);
         }else {
             let currentNode: Node | undefined;
@@ -141,15 +138,14 @@ export class BaseLinkedList {
             prevNode?.setNext(value);
             currentNode?.setPrev(value);
         }
-        this._lenght++;
-        return value;
+        this._length++;
     }
 
     public remove(index: number) {
-        if (index > this._lenght || index < -Math.abs(this._lenght)) {
+        if (index > this._length || index < -Math.abs(this._length)) {
             throw new Error("Input index is bigger than the current length");
         }
-        if (index === 0 || index === -Math.abs(this._lenght)) {
+        if (index === 0 || index === -Math.abs(this._length)) {
             this._first = this._first?.getNext();
             this._first?.setPrev(undefined);
         } else {
@@ -160,7 +156,7 @@ export class BaseLinkedList {
             let nextNode = pointerNode?.getNext();
             nextNode?.setPrev(newPrevNode);
         }
-        this._lenght--;
+        this._length--;
     }
 
     public pop(index?: number): Node | undefined {
@@ -169,17 +165,17 @@ export class BaseLinkedList {
                 let lastNode = this._last;
                 this._last = this._last?.getPrev();
                 this._last?.setNext(undefined);
-                this._lenght--;
+                this._length--;
                 return lastNode;
             } else {
-                if (index > this._lenght || index < -Math.abs(this._lenght)) {
+                if (index > this._length || index < -Math.abs(this._length)) {
                     throw new Error("Input index is bigger than the current length");
                 }
-                if (index === 0 || index === -Math.abs(this._lenght)) {
+                if (index === 0 || index === -Math.abs(this._length)) {
                     let firstNode = this._first;
                     this._first = this._first?.getNext();
                     this._first?.setPrev(undefined);
-                    this._lenght--;
+                    this._length--;
                     return firstNode;
                 } else {
                     let pointerNode: Node | undefined;
@@ -188,7 +184,7 @@ export class BaseLinkedList {
                     let newPrevNode = pointerNode?.getPrev();
                     let nextNode = pointerNode?.getNext();
                     nextNode?.setPrev(newPrevNode);
-                    this._lenght--;
+                    this._length--;
                     return pointerNode;
                 }
             }
@@ -198,7 +194,7 @@ export class BaseLinkedList {
     }
 
     public exchange(index1: number, index2: number) {
-        if (index1 > this._lenght - 1 || index2 > this._lenght - 1) {
+        if (index1 > this._length - 1 || index2 > this._length - 1) {
             throw new Error("Input index is bigger than the current length");
         }
 

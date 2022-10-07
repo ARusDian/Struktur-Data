@@ -1,6 +1,7 @@
 // Run: tsc index.ts && node index.js
 // import { SimpleSortAbleLinkedList } from "./Sorts/SimpleSort";
 // import { SoalLinkedList } from "./Praktikum/SoalLinkedList";
+import { BaseLinkedList } from "./Base/BaseLinkedList";
 import { SingleLinkedList } from "./Base/SingleLinkedList";
 import {AdvancedSortableLinkedList} from "./Sorts/AdvancedSort";
 
@@ -11,23 +12,14 @@ function performanceTest(sortingFunction: () => void) {
 }
 
 try {
-    let linkedList = new AdvancedSortableLinkedList();
+    let linkedList = new BaseLinkedList();
     console.log("----Init LinkedList----");
     linkedList.add(20);
     linkedList.add(1);
-    linkedList.add(5);
-    linkedList.add(2);
-    linkedList.add(7);
-    linkedList.add(-5);
-    linkedList.add(43);
-    linkedList.add(-9);
-    linkedList.add(-1);
-    linkedList.add(11);
-    linkedList.add(0);
-    linkedList.add(8);
     linkedList.printAsArray();
-    linkedList.shellSort(true);
-    // linkedList.exchange(1, 3);
+    linkedList.remove(2);
+    linkedList.printAsArray();
+    linkedList.exchange(0, 2); 
     linkedList.printAsArray();
 
 

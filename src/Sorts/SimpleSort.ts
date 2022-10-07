@@ -4,8 +4,8 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
 
     public bubbleSort(showProcess : boolean = false) {
         console.log("---Bubble Sort---");
-        for (let i = 0; i < this._lenght; i++) {
-            for (let j = 0; j < this._lenght - i - 1; j++) {
+        for (let i = 0; i < this._length; i++) {
+            for (let j = 0; j < this._length - i - 1; j++) {
                 let node1 = this.find(j);
                 let node2 = node1?.getNext();
                 if (node1!.getValue() > node2!.getValue()) {
@@ -19,7 +19,7 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
     public selectionSort(showProcess: boolean = false) {
         console.log("---Selection Sort---");
         let currentNode, minimum, nextMinimum;
-        for (let i = 0; i < this._lenght; i++) {
+        for (let i = 0; i < this._length; i++) {
             currentNode = this.find(i);
             minimum = currentNode;
             nextMinimum = minimum!.getNext();
@@ -36,7 +36,7 @@ export class SimpleSortAbleLinkedList extends BaseLinkedList {
 
     public insertionSort(showProcess: boolean = false) {
         console.log("---Insertion Sort---");
-        for (let i = 1; i < this._lenght; i++) {
+        for (let i = 1; i < this._length; i++) {
             let currentNode = this.pop(i);
             let prevNode = currentNode?.getPrev();
             let insertIndex = i - 1;
