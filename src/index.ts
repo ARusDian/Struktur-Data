@@ -2,8 +2,6 @@
 // import { SimpleSortAbleLinkedList } from "./Sorts/SimpleSort";
 // import { SoalLinkedList } from "./Praktikum/SoalLinkedList";
 import { BaseLinkedList } from "./Base/BaseLinkedList";
-import { SingleLinkedList } from "./Base/SingleLinkedList";
-import {AdvancedSortableLinkedList} from "./Sorts/AdvancedSort";
 
 function performanceTest(sortingFunction: () => void) {
     let startTime = performance.now()

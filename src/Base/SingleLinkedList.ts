@@ -73,7 +73,7 @@ export class SingleLinkedList {
         return currentNode;
     }
 
-    public add(value: number): Node {
+    public add(value: number) {
         const newNode = new Node(value);
         if (this._lenght === 0) {
             this._first = this._last=  newNode;
@@ -82,18 +82,6 @@ export class SingleLinkedList {
             this._last = newNode;
         }
         this._lenght++;
-        return newNode;
-    }
-
-    public addNode(value: Node): Node {
-        if (this._lenght === 0) {
-            this._first = this._last = value;
-        } else {
-            this._last?.setNext(value);
-            this._last = value;
-        }
-        this._lenght++;
-        return value;
     }
 
     public insert(value: number, index: number) {
@@ -115,7 +103,6 @@ export class SingleLinkedList {
             newNode.setNext(tempNode);
         }
         this._lenght++;
-        return newNode;
     }
 
     public remove(index: number) {
