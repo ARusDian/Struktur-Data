@@ -1,23 +1,16 @@
-// Run: tsc index.ts && node index.js
-// import { SimpleSortAbleLinkedList } from "./Sorts/SimpleSort";
-// import { SoalLinkedList } from "./Praktikum/SoalLinkedList";
-// import { BaseLinkedList } from "./Base/BaseLinkedList";
-import { AdvancedSortableLinkedList } from "./Sorts/AdvancedSort";
-
-function performanceTest(sortingFunction: () => void) {
-    let startTime = performance.now()
-    sortingFunction();
-    console.log(`Waktu yang dibutuhkan: ${performance.now() - startTime} ms`);
-}
+import { BinaryTree } from "./Tree/BinaryTree";
 
 try {
-    let linkedList = new AdvancedSortableLinkedList();
-    linkedList.generateRandomList(10);
-    linkedList.printAsArray();
-    linkedList.shellSort(true);
-    linkedList.printAsArray();
-
-
+    let BT = new BinaryTree<number>();
+    BT.insert(5);
+    BT.insert(3);
+    BT.insert(7);
+    BT.insert(1);
+    BT.insert(4);
+    BT.insert(6);
+    BT.insert(8);
+    BT.showAll();
+    console.log(BT.isExist(3));
 } catch (e) {
     console.log(`Error Occured, \n${e}`);
 }
