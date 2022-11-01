@@ -10,6 +10,8 @@ try {
     BT.insert(6);
     BT.insert(8);
     BT.showAll();
+    console.log("-----------");
+    BT.showAll();
     console.log(BT.isExist(3));
 } catch (e) {
     console.log(`Error Occured, \n${e}`);

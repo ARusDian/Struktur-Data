@@ -23,7 +23,7 @@ export class Node<T>{
         return this._parent
     }
 
-    setParent(parent: Node<T>) {
+    setParent(parent: Node<T>| null) {
         this._parent = parent
     }
 
@@ -31,7 +31,7 @@ export class Node<T>{
         return this._right
     }
 
-    setRight(right: Node<T>) {
+    setRight(right: Node<T> | null) {
         this._right = right
     }
 
@@ -39,7 +39,7 @@ export class Node<T>{
         return this._left
     }
 
-    setLeft(left: Node<T>) {
+    setLeft(left: Node<T> | null) {
         this._left = left
     }
 }

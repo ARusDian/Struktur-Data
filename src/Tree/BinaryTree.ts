@@ -11,6 +11,18 @@ export class BinaryTree<T> {
         return this._root;
     }
 
+    setRoot(value: Node<T> | null) {
+        this._root = value
+    }
+
+    getMinNode(node: Node<T>): Node<T> {
+        if (node.getLeft() !== null) {
+            return this.getMinNode(node.getLeft()!);
+        } else {
+            return node;
+        }
+    }
+
     insert(value: T) : boolean { 
         let newNode = new Node(value)
         if (this._root === null) {
@@ -80,6 +92,53 @@ export class BinaryTree<T> {
         console.log(node.getValue())
         if (node.getRight() !== null) {
             this.showAllNode(node.getRight()!)
+        }
+    }
+
+    remove(value: T) : Boolean {
+        let node = this.search(value)
+        if (node !== null) {
+            this.removeNode(node)
+            return true;
+        }
+        return false;
+    }
+
+    removeNode(node: Node<T>) {
+        if (node.getLeft() === null && node.getRight() === null) {
+            if (node.getParent() !== null) {
+                if (node.getParent()!.getLeft() === node) {
+                    node.getParent()!.setLeft(null)
+                } else {
+                    node.getParent()!.setRight(null)
+                }
+            } else {
+                this._root = null
+            }
+        } else if (node.getLeft() !== null && node.getRight() === null) {
+            if (node.getParent() !== null) {
+                if (node.getParent()!.getLeft() === node) {
+                    node.getParent()!.setLeft(node.getLeft()!)
+                } else {
+                    node.getParent()!.setRight(node.getLeft()!)
+                }
+            } else {
+                this._root = node.getLeft()
+            }
+        } else if (node.getLeft() === null && node.getRight() !== null) {
+            if (node.getParent() !== null) {
+                if (node.getParent()!.getLeft() === node) {
+                    node.getParent()!.setLeft(node.getRight()!)
+                } else {
+                    node.getParent()!.setRight(node.getRight()!)
+                }
+            } else {
+                this._root = node.getRight()
+            }
+        } else {
+            let minNode = this.getMinNode(node.getRight()!)
+            node.setValue(minNode.getValue())
+            this.removeNode(minNode)
         }
     }
 }
