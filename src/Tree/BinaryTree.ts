@@ -1,8 +1,8 @@
 import { Node } from "./Node";
 
-export class BinaryTree<T> { 
+export class BinaryTree<T> {
     private _root: Node<T> | null
-    
+
     constructor() {
         this._root = null;
     }
@@ -23,7 +23,15 @@ export class BinaryTree<T> {
         }
     }
 
-    insert(value: T) : boolean { 
+    getMaxNode(node: Node<T>): Node<T> {
+        if (node.getRight() !== null) {
+            return this.getMaxNode(node.getRight()!);
+        } else {
+            return node;
+        }
+    }
+
+    insert(value: T): boolean {
         let newNode = new Node(value)
         if (this._root === null) {
             this._root = newNode;
@@ -35,7 +43,7 @@ export class BinaryTree<T> {
 
     }
 
-    insertNode(node: Node<T>, newNode: Node<T>): boolean { 
+    insertNode(node: Node<T>, newNode: Node<T>): boolean {
         if (newNode.getValue() < node.getValue()) {
             if (node.getLeft() === null) {
                 node.setLeft(newNode);
@@ -45,7 +53,7 @@ export class BinaryTree<T> {
                 this.insertNode(node.getLeft()!, newNode);
                 return true;
             }
-        } else if(newNode.getValue() > node.getValue()) {
+        } else if (newNode.getValue() > node.getValue()) {
             if (node.getRight() === null) {
                 node.setRight(newNode)
                 newNode.setParent(node)
@@ -75,7 +83,7 @@ export class BinaryTree<T> {
         }
     }
 
-    isExist(value: T): boolean { 
+    isExist(value: T): boolean {
         return this.search(value) !== null
     }
 
@@ -84,8 +92,8 @@ export class BinaryTree<T> {
             this.showAllNode(this._root)
         }
     }
-    
-    showAllNode(node: Node<T>) { 
+
+    showAllNode(node: Node<T>) {
         if (node.getLeft() !== null) {
             this.showAllNode(node.getLeft()!)
         }
@@ -95,7 +103,39 @@ export class BinaryTree<T> {
         }
     }
 
-    remove(value: T) : Boolean {
+    inOrder(node: Node<T> | null = this._root) {
+        if (node !== null) {
+            this.inOrder(node.getLeft())
+            console.log(node.getValue())
+            this.inOrder(node.getRight())
+        }
+    }
+
+    preOrder(node: Node<T> | null = this._root) {
+        if (node !== null) {
+            console.log(node.getValue())
+            this.preOrder(node.getLeft())
+            this.preOrder(node.getRight())
+        }
+    }
+
+    postOrder(node: Node<T> | null = this._root) {
+        if (node !== null) {
+            this.postOrder(node.getLeft())
+            this.postOrder(node.getRight())
+            console.log(node.getValue())
+        }
+    }
+
+    printTree(prefix : String = "",Node : Node<T> | null = this._root, isLeft : boolean = true) {
+        if (Node !== null) {
+            this.printTree(prefix + (isLeft ? "│   " : "    "), Node!.getRight(), false);
+            console.log(prefix + (isLeft ? "└── " : "┌── ") + Node!.getValue());
+            this.printTree(prefix + (isLeft ? "    " : "│   "), Node!.getLeft(), true);
+        }
+    }
+
+    remove(value: T): Boolean {
         let node = this.search(value)
         if (node !== null) {
             this.removeNode(node)

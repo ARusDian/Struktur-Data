@@ -15,7 +15,7 @@ export class RedBlackTree<k, T>{
         this._root = value
     }
 
-    add(key: k, value: T): boolean {
+    insert(key: k, value: T): boolean {
         let newNode = new Node(value, key);
         if (this._root === null) {
             this._root = newNode;
@@ -144,7 +144,7 @@ export class RedBlackTree<k, T>{
         node.setParent(left);
     }
 
-    remove(key: k): boolean { 
+    remove(key: k): boolean {
         let node = this.search(key);
         if (node === null) {
             return false;
@@ -264,17 +264,51 @@ export class RedBlackTree<k, T>{
         }
     }
 
-    printTree() {
-        if (this._root !== null) {
-            this.printNodeTree(this._root, "");
+    printTree(prefix: String = "", Node: Node<k,T> | null = this._root, isLeft: boolean = true) {
+        if (Node !== null) {
+            this.printTree(prefix + (isLeft ? "│   " : "    "), Node!.getRight(), false);
+            console.log(prefix + (isLeft ? "└── " : "┌── ")  + Node!.getValue() + (Node!.isRed() ? " (red)" : " (black)"));
+            this.printTree(prefix + (isLeft ? "    " : "│   "), Node!.getLeft(), true);
+        }
+    }
+
+    getMaxDepth(node: Node<k, T> | null): number {
+        if (node === null) {
+            return 0;
+        } else {
+            let lDepth = this.getMaxDepth(node.getLeft());
+            let rDepth = this.getMaxDepth(node.getRight());
+            if (lDepth > rDepth) {
+                return lDepth + 1;
+            } else {
+                return rDepth + 1;
+            }
         }
     }
 
     printNodeTree(node: Node<k, T> | null, indent: string) {
         if (node !== null) {
-            console.log(indent + node.getKey()!, node.isRed() ? "Red" : "Black");
-            this.printNodeTree(node.getLeft(), indent + " ");
-            this.printNodeTree(node.getRight(), indent + " ");
+            if (node === this._root) {
+                console.log(node.getKey()!, node.isRed() ? "Red" : "Black");
+                this.printNodeTree(node.getLeft(), indent + "    ");
+                this.printNodeTree(node.getRight(), indent + "    ");
+            }
+            else {
+                if (node === node.getParent()!.getLeft() && node.getParent()!.getRight() !== null) {
+                    console.log(`${indent}|\n${indent}|_________\n${indent}|         |\n${indent}|         |\n${indent}${node.getKey()!}${node.isRed() ? "(Red)" : "(Black)"}  ${node.getParent()!.getRight()!.getKey()!}${node.getParent()!.getRight()!.isRed() ? "(Red)" : "(Black)"}`);
+                    this.printNodeTree(node.getLeft(), indent + "    ");
+                    this.printNodeTree(node.getRight(), indent + "    ");
+                }//  else if (node === node.getParent()!.getRight() && node.getParent()!.getLeft() !== null) { 
+                //     console.log("|\n|_________\n|         |\n|         |\n" + node.getParent()!.getLeft()!.getKey()!, node.getParent()!.getLeft()!.isRed() ? "(Red)" : "(Black)" + "  " + node.getKey()!, node.isRed() ? "(Red)" : "(Black)");
+                //     this.printNodeTree(node.getLeft(), indent + "    ");
+                //     this.printNodeTree(node.getRight(), indent + "    ");
+                // }
+                // else {
+                //     console.log("|\n-------\n|\n|\n" + node.getKey()!, node.isRed() ? "Red" : "Black");
+                //     this.printNodeTree(node.getLeft(), indent + "");
+                //     this.printNodeTree(node.getRight(), indent + "");
+                // }
+            }
         }
     }
 
