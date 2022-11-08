@@ -4,7 +4,7 @@ import { BinaryTree } from "./Tree/BinaryTree";
 try {
     let RBT = new RedBlackTree<number, string>();
     RBT.insert(1, "1");
-    RBT.insert(2, "2");
+    RBT.insert(2, "2 ");
     RBT.insert(3, "3");
     RBT.insert(4, "4");
     RBT.insert(5, "5");

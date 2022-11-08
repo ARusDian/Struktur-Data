@@ -17,6 +17,8 @@ export class RedBlackTree<k, T>{
 
     insert(key: k, value: T): boolean {
         let newNode = new Node(value, key);
+        this.printTree();
+        console.log("Inserting: " + newNode.getKey());
         if (this._root === null) {
             this._root = newNode;
             this._root.setRed(false);
@@ -266,8 +268,16 @@ export class RedBlackTree<k, T>{
 
     printTree(prefix: String = "", Node: Node<k,T> | null = this._root, isLeft: boolean = true) {
         if (Node !== null) {
-            this.printTree(prefix + (isLeft ? "│   " : "    "), Node!.getRight(), false);
-            console.log(prefix + (isLeft ? "└── " : "┌── ")  + Node!.getValue() + (Node!.isRed() ? " (red)" : " (black)"));
+            this.printTree(
+                prefix === "" ?
+                    prefix + (isLeft ? "    " : "    ") :
+                    prefix + (isLeft ? "│   " : "    "),
+                Node!.getRight(), false);
+            console.log((
+                prefix === "" ?
+                prefix + "─── " : prefix + (isLeft ? "└── " : "┌── ")) +
+                Node!.getValue() + (Node!.isRed() ? " (red)" : " (black)")
+            );
             this.printTree(prefix + (isLeft ? "    " : "│   "), Node!.getLeft(), true);
         }
     }

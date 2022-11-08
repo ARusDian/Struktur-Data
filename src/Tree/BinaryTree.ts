@@ -127,10 +127,18 @@ export class BinaryTree<T> {
         }
     }
 
-    printTree(prefix : String = "",Node : Node<T> | null = this._root, isLeft : boolean = true) {
+    printTree(prefix: String = "", Node: Node<T> | null = this._root, isLeft: boolean = true) {
         if (Node !== null) {
-            this.printTree(prefix + (isLeft ? "│   " : "    "), Node!.getRight(), false);
-            console.log(prefix + (isLeft ? "└── " : "┌── ") + Node!.getValue());
+            this.printTree(
+                prefix === "" ?
+                    prefix + (isLeft ? "    " : "    ") :
+                    prefix + (isLeft ? "│   " : "    "),
+                Node!.getRight(), false);
+            console.log((
+                prefix === "" ?
+                    prefix + "─── " : prefix + (isLeft ? "└── " : "┌── ")) +
+                Node!.getValue()
+            );
             this.printTree(prefix + (isLeft ? "    " : "│   "), Node!.getLeft(), true);
         }
     }
