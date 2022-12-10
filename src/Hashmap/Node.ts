@@ -1,23 +1,25 @@
-export class Node<T>{
-    private _key: String
+export class Node<k, T>{
+    private _key: String | null
+    private _parent: Node<k, T> | null
+    private _left: Node<k, T> | null
+    private _right: Node<k, T> | null
+    private _isRed: boolean
     private _value: String
-    private _parent: Node<T> | null
-    private _right: Node<T> | null
-    private _left: Node<T> | null
 
-    constructor(key: String, value: String) {
-        this._key = key
+    constructor(value: String, key: String) {
         this._value = value
+        this._key = key
         this._parent = null
-        this._right = null
         this._left = null
+        this._right = null
+        this._isRed = true
     }
 
-    getKey(): String {
+    getKey(): String | null {
         return this._key
     }
 
-    setKey(key: String) {
+    setKey(key: String | null) {
         this._key = key
     }
 
@@ -29,27 +31,35 @@ export class Node<T>{
         this._value = value
     }
 
-    getParent(): Node<T> | null {
+    getParent(): Node<k, T> | null {
         return this._parent
     }
 
-    setParent(parent: Node<T>| null) {
+    setParent(parent: Node<k, T> | null) {
         this._parent = parent
     }
 
-    getRight(): Node<T> | null{
-        return this._right
-    }
-
-    setRight(right: Node<T> | null) {
-        this._right = right
-    }
-
-    getLeft(): Node<T> | null{
+    getLeft(): Node<k, T> | null {
         return this._left
     }
 
-    setLeft(left: Node<T> | null) {
+    setLeft(left: Node<k, T> | null) {
         this._left = left
+    }
+
+    getRight(): Node<k, T> | null {
+        return this._right
+    }
+
+    setRight(right: Node<k, T> | null) {
+        this._right = right
+    }
+
+    isRed(): boolean {
+        return this._isRed
+    }
+
+    setRed(isRed: boolean) {
+        this._isRed = isRed
     }
 }

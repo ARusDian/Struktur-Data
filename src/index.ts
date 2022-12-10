@@ -1,17 +1,18 @@
-import { RedBlackTree } from "./RedBlackTree/RedBlackTree";
-import { BinaryTree } from "./Tree/BinaryTree";
+// import { RedBlackTree } from "./RedBlackTree/RedBlackTree";
+// import { BinaryTree } from "./Tree/BinaryTree";
+import { hashmap } from "./Hashmap/RBT";
 
 try {
-    let RBT = new RedBlackTree<number, string>();
-    RBT.insert(1, "1");
-    RBT.insert(2, "2 ");
-    RBT.insert(3, "3");
-    RBT.insert(4, "4");
-    RBT.insert(5, "5");
-    RBT.insert(6, "6");
-    RBT.insert(7, "7");
-    RBT.insert(8, "8");
-    RBT.printTree();
+    let Hashmap = new hashmap<String, String>();
+    Hashmap.insert("Angela", "Angela");
+    Hashmap.insert("Rusdi", "Rusdi");
+    Hashmap.insert("amel", "amel");
+    Hashmap.insert("Erlangga", "Erlangga");
+    Hashmap.insert("Aisyah", "Aisyah");
+    Hashmap.insert("Dylan", "Dylan");
+    Hashmap.insert("Chandra", "Chandra");
+    Hashmap.insert("angela", "angela");
+    Hashmap.printTree();
 
 
 } catch (e) {
