@@ -1,7 +1,7 @@
 import { Node } from "./Node";
 
 export class hashmap<k, T>{
-    private _root: Node<k, T> | null
+    protected _root: Node<k, T> | null
 
     constructor() {
         this._root = null;
@@ -15,10 +15,8 @@ export class hashmap<k, T>{
         this._root = value
     }
 
-    insert(key: String, value: String): boolean {
+    insert(key: k, value: T): boolean {
         let newNode = new Node(value, key);
-        this.printTree();
-        console.log("Inserting: " + newNode.getKey());
         if (this._root === null) {
             this._root = newNode;
             this._root.setRed(false);

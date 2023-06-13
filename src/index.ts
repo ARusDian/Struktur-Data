@@ -1,18 +1,33 @@
 // import { RedBlackTree } from "./RedBlackTree/RedBlackTree";
 // import { BinaryTree } from "./Tree/BinaryTree";
-import { hashmap } from "./Hashmap/RBT";
+// import { hashmap } from "./Hashmap/RBT";
+import { data } from "./Data";
+    
+import { IndexColumnRBT } from "./IndexColumnRBT";
 
 try {
-    let Hashmap = new hashmap<String, String>();
-    Hashmap.insert("Angela", "Angela");
-    Hashmap.insert("Rusdi", "Rusdi");
-    Hashmap.insert("amel", "amel");
-    Hashmap.insert("Erlangga", "Erlangga");
-    Hashmap.insert("Aisyah", "Aisyah");
-    Hashmap.insert("Dylan", "Dylan");
-    Hashmap.insert("Chandra", "Chandra");
-    Hashmap.insert("angela", "angela");
-    Hashmap.printTree();
+    const Hashmap = new IndexColumnRBT();
+    data.forEach((item) => {
+        Hashmap.insert(item.ticket_id, item);
+    });
+    
+    Hashmap.printTransactionTree();
+
+    const node = Hashmap.search("15237967621041");
+    console.log(node?.getValue());
+
+    const ticketId = "15237967621041";
+    
+    // let res;
+    // // linear search
+    // for (let i = 0; i < data.length; i++) {
+    //     if (data[i].ticket_id === ticketId) {
+    //         res = data[i];
+    //         break;
+    //     }
+    // }
+
+    // console.log(res);
 
 
 } catch (e) {

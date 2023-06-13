@@ -1,12 +1,12 @@
 export class Node<k, T>{
-    private _key: String | null
+    private _key: k
     private _parent: Node<k, T> | null
     private _left: Node<k, T> | null
     private _right: Node<k, T> | null
     private _isRed: boolean
-    private _value: String
+    private _value: T
 
-    constructor(value: String, key: String) {
+    constructor(value: T, key: k) {
         this._value = value
         this._key = key
         this._parent = null
@@ -15,19 +15,19 @@ export class Node<k, T>{
         this._isRed = true
     }
 
-    getKey(): String | null {
+    getKey(): k {
         return this._key
     }
 
-    setKey(key: String | null) {
+    setKey(key: k) {
         this._key = key
     }
 
-    getValue(): String {
+    getValue(): T {
         return this._value
     }
 
-    setValue(value: String) {
+    setValue(value: T) {
         this._value = value
     }
 
