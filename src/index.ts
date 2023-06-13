@@ -17,6 +17,9 @@ try {
     console.log(node?.getValue());
 
     const ticketId = "15237967621041";
+
+    const node1 = Hashmap.search(ticketId);
+    console.log(node1?.getValue());
     
     // let res;
     // // linear search
